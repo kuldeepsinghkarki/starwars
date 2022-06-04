@@ -18,7 +18,7 @@ import java.util.Optional;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
-@PreAuthorize("hasAnyRole('OPERATOR')")
+@PreAuthorize("hasAnyRole('ADMIN')")
 @RestController
 @RequestMapping("/film")
 @ApiResponses(value = {
@@ -35,6 +35,10 @@ public class FilmsController {
     @GetMapping("/all")
     public ResponseEntity<List<Film>> getAllFilms() {
         List<Film> films = service.getAll();
+        for (Film film : films) {
+            film.removeLinks();
+            film.add(linkTo(FilmsController.class).slash(film.getName()).withSelfRel());
+        }
         return new ResponseEntity<>(films, HttpStatus.OK);
     }
 

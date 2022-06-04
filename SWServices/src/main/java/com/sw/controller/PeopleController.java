@@ -36,6 +36,11 @@ public class PeopleController {
     @GetMapping("/all")
     public ResponseEntity<List<People>> getAllPeople() {
         List<People> peopleList = service.getAll();
+
+        for (People people : peopleList) {
+            people.removeLinks();
+            people.add(linkTo(PeopleController.class).slash(people.getName()).withSelfRel());
+        }
         return new ResponseEntity<>(peopleList, HttpStatus.OK);
     }
 
