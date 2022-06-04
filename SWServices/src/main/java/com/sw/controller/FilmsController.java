@@ -1,20 +1,24 @@
 package com.sw.controller;
 
+import com.sw.exceptions.SWResourceNotFoundException;
 import com.sw.model.Film;
 import com.sw.service.FilmService;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
+@PreAuthorize("hasAnyRole('OPERATOR')")
 @RestController
 @RequestMapping("/film")
 @ApiResponses(value = {
@@ -36,7 +40,11 @@ public class FilmsController {
 
     @GetMapping("/{name}")
     public ResponseEntity<Film> getFilm(@PathVariable("name") String name) {
-        Film film = service.getByName(name);
+        Optional<Film> filmOpt = Optional.ofNullable(service.getByName(name));
+        if (!filmOpt.isPresent()) {
+            throw new SWResourceNotFoundException(name + "is not found");
+        }
+        Film film = filmOpt.get();
         film.removeLinks();
         film.add(linkTo(FilmsController.class).slash(film.getName()).withSelfRel());
         return new ResponseEntity<>(film, HttpStatus.OK);
