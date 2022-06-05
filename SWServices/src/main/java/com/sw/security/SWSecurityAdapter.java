@@ -53,6 +53,7 @@ public class SWSecurityAdapter extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/auth/**").permitAll()
+                .antMatchers("/vehicle/**").permitAll()
                 .antMatchers("/people/**").authenticated()
                 .and()
                 .exceptionHandling()
