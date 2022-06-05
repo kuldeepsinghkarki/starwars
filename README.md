@@ -1,4 +1,10 @@
-**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
+**Deploying starwarservices locally in minikube**
+
+1. minikube alais 
+alias kubectl="minikube kubectl --"
+2. Deploy to minikube
+kubectl create deployment starwarservices --image=kuldeepsinghkarki/starwarservices:latest
+
 
 When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
 
