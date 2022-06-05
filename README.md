@@ -1,4 +1,15 @@
-**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
+**Deploying starwarservices locally in minikube**
+
+1. minikube alais 
+alias kubectl="minikube kubectl --"
+2. Deploy to minikube
+kubectl create deployment starwarservices --image=kuldeepsinghkarki/starwarservices:latest
+3. Make service avaiaible.
+kubectl expose deployment starwarservices --type=NodePort --port=8080
+4. Port forward to 8080 for this service.
+kubectl port-forward service/starwarservices 8080:8080
+5. User minkibe dashboard commmand to see minikube dashboard.
+
 
 When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
 
