@@ -28,7 +28,7 @@ jobs:
       run: |
            cd SWServices
            docker build . --file Dockerfile --tag kuldeepsinghkarki/starwarservices:${{ github.run_number }}
-           docker login -u kuldeepsinghkarki -p alphaBeta26
+           docker login -u ${{ secrets.DOCKER_REPO_USERNAME }} -p  ${{ secrets.DOCKER_REPO_SECRET }}
            docker push kuldeepsinghkarki/starwarservices:${{ github.run_number }}
 
   
