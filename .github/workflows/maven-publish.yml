@@ -27,8 +27,8 @@ jobs:
     - name: Build Docker image
       run: |
            cd SWServices
-           docker build . --file Dockerfile --tag kuldeepsinghkarki/starwarservices:$(date +%s)
+           docker build . --file Dockerfile --tag kuldeepsinghkarki/starwarservices:${{ github.run_id }}
            docker login -u kuldeepsinghkarki -p alphaBeta26
-           docker push starwarservices
+           docker push kuldeepsinghkarki/starwarservices
 
   
