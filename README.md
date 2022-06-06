@@ -6,6 +6,7 @@
 5. Develop REST APIs using Spring BOOT.
 6. Secure these APIs by using JWT tokens.
 7. Use SpringFox for Swagger Documentation.
+8. Used spring hateoas for matching up with OAS standards.
 
 **CI/CD Pipepline**
 1. Used GitHub Actions for creating the CI/CD pipeline.
