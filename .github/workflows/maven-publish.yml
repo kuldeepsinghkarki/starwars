@@ -27,12 +27,8 @@ jobs:
     - name: Build Docker image
       run: |
            cd SWServices
-           docker build . --file Dockerfile --tag swservices:$(date +%s)
-           
-   # - uses: actions/checkout@v3
-   
-      
-    - name: Git version
-      uses: codacy/git-version@2.4.0
+           docker build . --file Dockerfile --tag kuldeepsinghkarki/sw:$(date +%s)
+           docker login -u kuldeepsinghkarki -p alphaBeta26
+           docker push starwarservices
 
   
