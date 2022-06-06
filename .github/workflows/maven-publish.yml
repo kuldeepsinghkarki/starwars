@@ -36,8 +36,9 @@ jobs:
       id: herokudeployment
       with:
         email: kuldeepsingh.mca@gmail.com
-        api_key: ${{ secrets.HEROKU_API_KEY }}
+        api_key: 4297099c-e478-481d-9516-3dcf5b4345fa
         app_name: ${{ secrets.HEROKU_APP_NAME }}
+        dockerfile_path: /home/runner/work/starwars/starwars/SWServices
        
         
         
