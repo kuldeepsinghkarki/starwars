@@ -24,10 +24,11 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-    - name: SWServices folder
-      run: cd SWServices 
     - name: Build Docker image
-      run: docker build . --file Dockerfile --tag swservices:$(date +%s)
+      run: |
+           cd SWServices
+           docker build . --file Dockerfile --tag swservices:$(date +%s)
+           
    # - uses: actions/checkout@v3
    
       
