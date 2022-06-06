@@ -37,16 +37,28 @@ class VehicleControllerTest {
     @Test
     void findByNameTest() throws Exception {
         final String VEHICLE_NAME = "testvehicle";
-
         Vehicle vehicle = new Vehicle(VEHICLE_NAME, "Truck", "Ford");
         Mockito.when(vehicleRepository.search(VEHICLE_NAME)).thenReturn(vehicle);
-
         mockMvc.perform(MockMvcRequestBuilders
                 .get("/vehicle/" + VEHICLE_NAME)
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()
         ).andExpect(jsonPath("$", notNullValue()))
                 .andExpect(jsonPath("$.name", Matchers.is(VEHICLE_NAME)));
+    }
+
+    @Test
+    void findByNameNotFoundTest() throws Exception {
+        final String VEHICLE_NAME = "testvehicle";
+        Vehicle vehicle = new Vehicle(VEHICLE_NAME, "Truck", "Ford");
+
+
+        Mockito.when(vehicleRepository.search(VEHICLE_NAME)).thenReturn(vehicle);
+        mockMvc.perform(MockMvcRequestBuilders
+                .get("/vehicle/not" + VEHICLE_NAME)
+                .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isNotFound());
+
     }
 
 }
