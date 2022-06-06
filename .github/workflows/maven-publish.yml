@@ -26,3 +26,7 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: Git version
       uses: codacy/git-version@2.4.0
+
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
