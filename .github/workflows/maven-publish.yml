@@ -30,5 +30,17 @@ jobs:
            docker build . --file Dockerfile --tag kuldeepsinghkarki/starwarservices:${{ github.run_number }}
            docker login -u ${{ secrets.DOCKER_REPO_USERNAME }} -p  ${{ secrets.DOCKER_REPO_SECRET }}
            docker push kuldeepsinghkarki/starwarservices:${{ github.run_number }}
+           
+    - name: Deploy to Heroku
+    - uses: lucassarcanjo/heroku-deploy@2.1.17
+      with:
+        email:kuldeepsingh.mca@gmail.com
+        api_key:${{ secrets.HEROKU_API_KEY }}
+        app_name:${{ secrets.HEROKU_APP_NAME }}
+        dockerfile_path:Dockerfile
+        
+        
+        
+     
 
   
