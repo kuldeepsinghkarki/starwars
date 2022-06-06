@@ -30,17 +30,17 @@ jobs:
            docker build . --file Dockerfile --tag kuldeepsinghkarki/starwarservices:${{ github.run_number }}
            docker login -u ${{ secrets.DOCKER_REPO_USERNAME }} -p  ${{ secrets.DOCKER_REPO_SECRET }}
            docker push kuldeepsinghkarki/starwarservices:${{ github.run_number }}
-   
-    - name: Deploy to Heroku
-      uses: jctaveras/heroku-deploy@v1.0.0
-      id: herokudeployment
-      with:
-        email: kuldeepsingh.mca@gmail.com
-        api_key: 4297099c-e478-481d-9516-3dcf5b4345fa
-        app_name: ${{ secrets.HEROKU_APP_NAME }}
-        dockerfile: /home/runner/work/starwars/starwars/SWServices
+
+#    - name: Deploy to Heroku
+#      uses: jctaveras/heroku-deploy@v1.0.0
+#      id: herokudeployment
+#      with:
+#        email: kuldeepsingh.mca@gmail.com
+#        api_key: 4297099c-e478-481d-9516-3dcf5b4345fa
+#        app_name: ${{ secrets.HEROKU_APP_NAME }}
+#        dockerfile: /home/runner/work/starwars/starwars/SWServices
        
-        
+
         
      
 
