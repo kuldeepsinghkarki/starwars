@@ -24,9 +24,10 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file SWServices/Dockerfile --tag swservices:$(date +%s)
     - name: Git version
       uses: codacy/git-version@2.4.0
 
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file SWServices/Dockerfile --tag my-image-name:$(date +%s)
+  
