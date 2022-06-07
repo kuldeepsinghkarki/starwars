@@ -24,8 +24,9 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RequestMapping("/people")
 @ApiResponses(value = {
         @io.swagger.annotations.ApiResponse(code = 400, message = "This is a bad request, please follow the API documentation for the proper request format"),
-        @io.swagger.annotations.ApiResponse(code = 401, message = "Due to security constraints, your access request cannot be authorized"),
-        @io.swagger.annotations.ApiResponse(code = 500, message = "The server is down. Please bear with us."),
+        @io.swagger.annotations.ApiResponse(code = 401, message = "Token header passed is not valid, your access request cannot be authorized"),
+        @io.swagger.annotations.ApiResponse(code = 403, message = "Token is valid but you need to possess ADMIN OR OPERATOR role"),
+        @io.swagger.annotations.ApiResponse(code = 500, message = "The server is down or some exception occurred. Please bear with us."),
 })
 public class PeopleController {
 
