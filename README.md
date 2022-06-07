@@ -23,3 +23,5 @@ kubectl expose deployment starwarservices --type=NodePort --port=8080
 4. Port forward to 8080 for this service.
 kubectl port-forward service/starwarservices 8080:8080
 5. Use **minkibe dashboard** commmand to see minikube dashboard.
+6. Please use following command after downloading docker image of this app from dockerhub if not using minikube
+    docker run -p8080:8080 --name services kuldeepsinghkarki/starwarservices
