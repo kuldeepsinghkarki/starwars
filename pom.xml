@@ -72,14 +72,14 @@
             <profile>
                 <id>deploy</id>
 
-                <distributionManagement>
+               <!-- <distributionManagement>
                     <repository>
                         <uniqueVersion>false</uniqueVersion>
                         <id>git</id>
                         <name>GitHub Kuldeep Apache Maven Packages</name>
                         <url>https://maven.pkg.github.com/kuldeepsinghkarki/starwars</url>
                     </repository>
-                </distributionManagement>
+                </distributionManagement>-->
 
             </profile>
     </profiles>
