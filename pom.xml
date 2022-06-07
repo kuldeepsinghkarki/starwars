@@ -11,8 +11,6 @@
     <packaging>pom</packaging>
 
     <name>StarWars</name>
-
-
     <modules>
         <module>SWServices</module>
 	<!--<module>SWWeb</module>
