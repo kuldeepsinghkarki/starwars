@@ -23,7 +23,7 @@ public class SwaggerConfiguration {
                 "Open API for StarWars services.",
                 "1.0",
                 "Terms of service",
-                new Contact("Kuldeep Singh", "www.starwars.com", "xyz@gmail.com"),
+                new Contact("Kuldeep Singh", "www.starwars.com", "kuldeepkarki.st@gmail.com"),
                 "License of API",
                 "API license URL",
                 Collections.emptyList());

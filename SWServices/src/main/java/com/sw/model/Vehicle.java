@@ -2,6 +2,9 @@ package com.sw.model;
 
 import org.springframework.hateoas.RepresentationModel;
 
+/**
+ * Vehicle representation model
+ */
 public class Vehicle extends RepresentationModel<People> {
 
     private String name;

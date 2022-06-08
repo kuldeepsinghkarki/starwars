@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+/**
+ * Planet entity using Spring Data Rest
+ */
 @Entity
 public class Planet {
 

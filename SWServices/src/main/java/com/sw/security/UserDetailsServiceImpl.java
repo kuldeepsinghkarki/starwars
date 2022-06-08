@@ -1,6 +1,8 @@
 package com.sw.security;
 
 import com.sw.exceptions.SWResourceNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,8 +13,14 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This service checks for user data existence based on internal logic
+ */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
+
+    Logger logger = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
@@ -32,6 +40,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             authorities.add(new SimpleGrantedAuthority("ROLE_OPERATOR"));
             userDetails.setAuthorities(authorities);
         } else {
+            logger.error("No matching record found");
             throw new SWResourceNotFoundException(username + "is not registered with us, try different username");
         }
         return userDetails;

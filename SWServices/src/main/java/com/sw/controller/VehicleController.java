@@ -16,6 +16,10 @@ import java.util.Optional;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
+
+/**
+ *
+ */
 @RestController
 @RequestMapping("/vehicle")
 @ApiResponses(value = {
@@ -25,10 +29,8 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 })
 public class VehicleController {
 
-
     @Autowired
     VehicleService service;
-
 
     @GetMapping("/all")
     public ResponseEntity<List<Vehicle>> getAll() {

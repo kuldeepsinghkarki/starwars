@@ -5,6 +5,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
+/**
+ * UserDetails object to be captured in the SubjectPrincipal
+ * @see javax.security.auth.Subject
+ */
 public class SWUserDetails implements UserDetails {
 
     private String username;

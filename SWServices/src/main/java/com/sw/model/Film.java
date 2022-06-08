@@ -2,6 +2,9 @@ package com.sw.model;
 
 import org.springframework.hateoas.RepresentationModel;
 
+/**
+ * Film representation model
+ */
 public class Film extends RepresentationModel<Film> {
 
 
@@ -9,6 +12,11 @@ public class Film extends RepresentationModel<Film> {
     private Integer episodeId;
     private String producer;
 
+    /**
+     * @param name
+     * @param episodeId
+     * @param producer
+     */
     public Film(String name, Integer episodeId, String producer) {
         this.name = name;
         this.episodeId = episodeId;

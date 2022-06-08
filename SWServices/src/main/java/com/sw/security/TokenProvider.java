@@ -9,6 +9,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+/**
+ * Custom token generator class for generating and validating SW tokens.
+ */
 @Component
 public class TokenProvider {
 
@@ -20,9 +23,12 @@ public class TokenProvider {
     @Value("${app.jwtExpirationInMs}")
     private int jwtExpirationInMs;
 
+    /**
+     * Generate JWT token based on authentication principal
+     * @param authentication
+     * @return
+     */
     public String generateToken(Authentication authentication) {
-
-
         SWUserDetails userDetails = (SWUserDetails) authentication.getPrincipal();
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + jwtExpirationInMs);
@@ -37,6 +43,10 @@ public class TokenProvider {
         return token;
     }
 
+    /**
+     * @param token
+     * @return
+     */
     public String getUserUsernameFromJWT(String token) {
         Claims claims = Jwts.parser()
                 .setSigningKey(jwtSecret)
@@ -45,15 +55,19 @@ public class TokenProvider {
         return claims.getSubject();
     }
 
+    /**
+     * @param authToken
+     * @return true if token validation based on jwtSecret is passed,false otherwise
+     */
     public boolean validateToken(String authToken) {
+        logger.debug("Starting validation for received JWT token "+authToken);
         try {
             Jwts.parser()
                     .setSigningKey(jwtSecret)
                     .parseClaimsJws(authToken);
             return true;
-        } catch (SignatureException ex) {
-        } catch (IllegalArgumentException | UnsupportedJwtException | MalformedJwtException | ExpiredJwtException ex) {
-            logger.error("Exception " + ex);
+        } catch (SignatureException | IllegalArgumentException | UnsupportedJwtException | MalformedJwtException | ExpiredJwtException ex) {
+            logger.error("Token validation failed  " + ex);
         }
         return false;
     }

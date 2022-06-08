@@ -20,7 +20,6 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
 @WebMvcTest({VehicleController.class, VehicleService.class, UserDetailsServiceImpl.class, TokenProvider.class})
 class VehicleControllerTest {
 

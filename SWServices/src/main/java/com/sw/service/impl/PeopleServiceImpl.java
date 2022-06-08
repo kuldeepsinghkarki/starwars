@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * People service implementation.
+ */
 @Service
 public class PeopleServiceImpl extends BaseServiceImpl implements PeopleService {
 

@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * PeopleRepository for people data.
+ */
 @Repository
 public class PeopleRepository implements SwRepository<People> {
 

@@ -7,9 +7,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+/**
+ * DataLoader class to populate initial set of in-memory records for spring
+ * data rest based repositories
+ */
 @Component
 public class DataLoader implements CommandLineRunner {
-
 
     private final PlanetRepository repository;
 

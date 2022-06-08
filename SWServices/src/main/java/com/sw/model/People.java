@@ -8,6 +8,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * People representation model
+ */
 public class People extends RepresentationModel<People> {
 
     private String name;
@@ -37,7 +40,6 @@ public class People extends RepresentationModel<People> {
     public String getGender() {
         return gender;
     }
-
 
     public void setGender(String gender) {
         this.gender = gender;

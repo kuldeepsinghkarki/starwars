@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Repository
-public class FilmRepository implements SwRepository {
+public class FilmRepository implements SwRepository<Film> {
 
     private static Map<String, Film> filmRepo = new HashMap<>();
 
