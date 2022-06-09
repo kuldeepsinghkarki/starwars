@@ -4,6 +4,7 @@
 - APIs decorated with Swagger doc.
 - API Security . Used JWT tokens for endpoints security. Please see [API Security]
 - Dockerfile for containerization.
+- Offline API behavior for person service.
 - OpenAPI support using HATEOAS.
 - Deployment using minikube
 
