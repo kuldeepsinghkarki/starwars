@@ -1,7 +1,10 @@
 package com.sw.controller;
 
+import com.sw.exceptions.DBConnectionException;
+import com.sw.service.PeopleService;
 import com.sw.service.SWUtils;
 import io.swagger.annotations.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,10 +20,22 @@ import org.springframework.web.bind.annotation.RestController;
 })
 public class AdminController {
 
+    @Autowired
+    PeopleService peopleService;
+
     @GetMapping("/toggle")
     public ResponseEntity<?> toggleService() {
         SWUtils.toggleService();
+
         boolean switchValue = SWUtils.isActive();
-        return new ResponseEntity<>(switchValue, HttpStatus.OK);
+        if (switchValue) {
+            try {
+                peopleService.clearBufferRequests();
+            } catch (DBConnectionException e) {
+                // log error;
+            }
+        }
+        String repoState = switchValue == true ? "DB connection is Back" : "DB connection is Lost";
+        return new ResponseEntity<>(repoState, HttpStatus.OK);
     }
 }

@@ -1,5 +1,6 @@
 package com.sw.controller;
 
+import com.sw.exceptions.DBConnectionException;
 import com.sw.model.People;
 import com.sw.service.PeopleService;
 import io.swagger.annotations.ApiResponses;
@@ -52,6 +53,26 @@ public class PeopleController {
             return ResponseEntity.notFound().build();
         }
         People people = peopleOpt.get();
+        updateLinks(people);
+        return new ResponseEntity<>(people, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/{name}/{filmName}")
+    public ResponseEntity<String> addFilm(@PathVariable("name") String name, @PathVariable("filmName") String filename) {
+        People people = null;
+        try {
+            people = service.addFilm(name, filename);
+        } catch (DBConnectionException e) {
+            return new ResponseEntity<>("Your request got registered but due to DB connection error, you are currently working in offline mode", HttpStatus.OK);
+        }
+        if (people == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return new ResponseEntity<>("Film " + filename + " got added successfully for the person " + name, HttpStatus.OK);
+    }
+
+    private void updateLinks(People people) {
         people.removeLinks();
         people.add(linkTo(PeopleController.class).slash(people.getName()).withSelfRel());
         if (people.getFilms() != null) {
@@ -60,8 +81,5 @@ public class PeopleController {
                 people.add(filmLink);
             }
         }
-
-        return new ResponseEntity<>(people, HttpStatus.OK);
     }
-
 }

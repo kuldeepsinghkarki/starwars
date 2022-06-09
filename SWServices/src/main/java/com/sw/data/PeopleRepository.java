@@ -1,6 +1,8 @@
 package com.sw.data;
 
+import com.sw.exceptions.DBConnectionException;
 import com.sw.model.People;
+import com.sw.service.SWUtils;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -31,6 +33,14 @@ public class PeopleRepository implements SwRepository<People> {
     @Override
     public People search(String name) {
         return peopleRepo.get(name);
+    }
+
+    public People addFilm(String personName, String filmName) throws DBConnectionException {
+        if (!SWUtils.isActive())
+            throw new DBConnectionException("DB connection error");
+        People people = peopleRepo.get(personName);
+        people.getFilms().add(filmName);
+        return people;
     }
 
 }
