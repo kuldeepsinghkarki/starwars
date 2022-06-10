@@ -4,7 +4,7 @@
 - APIs decorated with Swagger doc.
 - API Security . Used JWT tokens for endpoints security. Please see [API Security]
 - Dockerfile for containerization.
-- Offline API behavior for person service.
+- Offline API behavior for person service [API Offline Mode]
 - OpenAPI support using HATEOAS.
 - Deployment using minikube
 
@@ -32,6 +32,7 @@ Starwars APIs used following tools/tech for the implementation:
    [CentOS]:<https://www.centos.org>
    [Maven]:<https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html>
    [Postman]:<https://www.postman.com>
+   [API Offline Mode]:<https://github.com/kuldeepsinghkarki/starwars/blob/master/API%20Offline%20Mode.png>
 
 
 #### Setting Development Environemnt
